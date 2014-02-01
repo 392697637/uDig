@@ -113,6 +113,12 @@ public class TiledWebMapServer extends AbstractOpenWebService<WMSCCapabilities, 
                         // ignore.
                     }
                 }
+
+                @Override
+                public String getResponseCharset() {
+                    // TODO Auto-generated method stub
+                    return null;
+                }
             };
 
             response = new WMSCCapabilitiesResponse(mock);

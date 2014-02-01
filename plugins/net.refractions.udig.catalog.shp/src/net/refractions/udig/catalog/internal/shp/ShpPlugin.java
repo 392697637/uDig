@@ -53,17 +53,17 @@ public class ShpPlugin extends AbstractUIPlugin {
      */
     public void start( BundleContext context ) throws Exception {
         super.start(context);
-        Logger logger = ShapefileDataStoreFactory.LOGGER;
-        if (ShpPlugin.isDebugging(SHP_TRACE_FINEST) || ShpPlugin.isDebugging(SHP_TRACE_FINE)) {
-            if( ShpPlugin.isDebugging(SHP_TRACE_FINE)){
-                logger.setLevel(Level.FINE);
-            }else{
-                logger.setLevel(Level.FINEST);
-            }
-        } else {
-            logger.setLevel(Level.SEVERE);
-        }
-        logger.addHandler(new ConsoleHandler());
+//        Logger logger = ShapefileDataStoreFactory.LOGGER;
+//        if (ShpPlugin.isDebugging(SHP_TRACE_FINEST) || ShpPlugin.isDebugging(SHP_TRACE_FINE)) {
+//            if( ShpPlugin.isDebugging(SHP_TRACE_FINE)){
+//                logger.setLevel(Level.FINE);
+//            }else{
+//                logger.setLevel(Level.FINEST);
+//            }
+//        } else {
+//            logger.setLevel(Level.SEVERE);
+//        }
+//        logger.addHandler(new ConsoleHandler());
     }
 
 	/**
