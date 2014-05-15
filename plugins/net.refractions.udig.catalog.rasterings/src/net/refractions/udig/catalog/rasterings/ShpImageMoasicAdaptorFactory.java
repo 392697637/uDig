@@ -75,7 +75,16 @@ public class ShpImageMoasicAdaptorFactory implements IResolveAdapterFactory {
         try {
             service = resource.service(new NullProgressMonitor());
         if (service.canResolve(ShapefileDataStore.class)) {
-            return service.resolve(File.class, new NullProgressMonitor());
+            
+            File file = service.resolve(File.class, new NullProgressMonitor());
+            // a properties file needs to exist
+            String path = file.getAbsolutePath();
+            int lastDot = path.lastIndexOf("."); //$NON-NLS-1$
+                path = path.substring(0, lastDot) + ".properties"; //$NON-NLS-1$
+            File propertiesFile = new File(path);
+            if(propertiesFile.exists())
+                return file;
+            return null;
         }
         } catch (IOException e) {
             RasteringsPlugin.log("Error obtaining shapefile file", e); //$NON-NLS-1$

@@ -49,7 +49,6 @@ import org.geotools.data.FeatureReader;
 import org.geotools.data.Transaction;
 import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.shapefile.ShapefileDataStoreFactory;
-import org.geotools.data.shapefile.indexed.IndexedShapefileDataStore;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.Filter;
@@ -258,8 +257,8 @@ public class ShpServiceImpl extends IService {
     private void openIndexGenerationDialog( final ShapefileDataStore ds ) {
         rLock.lock();
         try {
-            if (ds instanceof IndexedShapefileDataStore) {
-                IndexedShapefileDataStore ids = (IndexedShapefileDataStore) ds;
+            if (ds instanceof ShapefileDataStore) {
+                ShapefileDataStore ids = (ShapefileDataStore) ds;
                 if (ids.isIndexed())
                     return;
                 String name = getIdentifier().getFile();
@@ -271,7 +270,11 @@ public class ShpServiceImpl extends IService {
 
                     public void run( IProgressMonitor monitor ) throws InvocationTargetException, InterruptedException {
                         monitor.beginTask(Messages.ShpPreferencePage_createindex + " " + finalName, IProgressMonitor.UNKNOWN); //$NON-NLS-1$
-                        index(ds, ds.getTypeNames()[0]);
+                        try {
+                            index(ds, ds.getTypeNames()[0]);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         monitor.done();
                     }
 

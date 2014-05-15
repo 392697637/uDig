@@ -52,5 +52,11 @@ public class MockHttpResponse implements HTTPResponse{
     public InputStream getResponseStream() throws IOException {
         return in;
     }
+
+    @Override
+    public String getResponseCharset() {
+        // TODO Auto-generated method stub
+        return null;
+    }
     
 }

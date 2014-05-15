@@ -20,7 +20,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
-import org.geotools.renderer.shape.ShapefileRenderer;
+import org.geotools.renderer.GTRenderer;
+import org.geotools.renderer.lite.StreamingRenderer;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -48,7 +49,7 @@ public class RendererPlugin extends Plugin {
         super.start(context);
         ClassLoader current = Thread.currentThread().getContextClassLoader();
         try {
-            Thread.currentThread().setContextClassLoader(ShapefileRenderer.class.getClassLoader());
+            Thread.currentThread().setContextClassLoader(StreamingRenderer.class.getClassLoader());
             Logger logger = Logger.getLogger("org.geotools.renderer.shape");//$NON-NLS-1$
             if (isDebugging("net.refractions.udig.render.feature.shapefile/finest")) { //$NON-NLS-1$
                 logger.setLevel(Level.FINEST);

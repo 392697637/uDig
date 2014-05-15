@@ -294,8 +294,13 @@ public class BasicFeatureRenderer extends RendererImpl {
      * @see net.refractions.udig.project.internal.render.impl.RendererImpl#dispose()
      */
     public void dispose() {
-        if (getRenderer() != null)
-            getRenderer().stopRendering();
+        try {
+            if (getRenderer() != null)
+                getRenderer().stopRendering();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
     }
 
