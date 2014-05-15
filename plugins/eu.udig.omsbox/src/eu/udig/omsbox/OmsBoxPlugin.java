@@ -379,37 +379,6 @@ public class OmsBoxPlugin extends AbstractUIPlugin {
         return null;
     }
 
-    /**
-     * @return the java path used by the uDig instance or "java".
-     */
-    public static String getUdigJava() {
-        String[] possibleJava = {"javaw.exe", "java.exe", "java"};
-        Location installLocation = Platform.getInstallLocation();
-        File installFolder = DataUtilities.urlToFile(installLocation.getURL());
-        if (installFolder != null && installFolder.exists()) {
-            File jreFolder = new File(installFolder, "jre/bin");
-            if (jreFolder.exists()) {
-                for( String pJava : possibleJava ) {
-                    File java = new File(jreFolder, pJava);
-                    if (java.exists()) {
-                        return java.getAbsolutePath();
-                    }
-                }
-            }
-        }
-        String jreDirectory = System.getProperty("java.home");
-        File javaFolder = new File(jreDirectory, "jre/bin");
-        if (javaFolder.exists()) {
-            for( String pJava : possibleJava ) {
-                File java = new File(javaFolder, pJava);
-                if (java.exists()) {
-                    return java.getAbsolutePath();
-                }
-            }
-        }
-        return "java";
-    }
-
     private HashMap<String, Process> runningProcessesMap = new HashMap<String, Process>();
 
     private ILayer processingRegionLayer;

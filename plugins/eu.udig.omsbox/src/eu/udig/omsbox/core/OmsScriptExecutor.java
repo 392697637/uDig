@@ -53,7 +53,7 @@ public class OmsScriptExecutor {
         /*
          * get java exec
          */
-        javaFile = OmsBoxPlugin.getUdigJava();
+        javaFile = JavaChooser.getProcessingJava();
         if (!javaFile.equals("java")) {
             javaFile = "\"" + javaFile + "\"";
         }
