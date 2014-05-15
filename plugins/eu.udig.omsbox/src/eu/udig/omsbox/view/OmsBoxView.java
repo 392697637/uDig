@@ -392,6 +392,9 @@ public class OmsBoxView extends ViewPart {
      * @throws Exception
      */
     public void runSelectedModule() throws Exception {
+        if (currentSelectedModuleGui == null) {
+            return;
+        }
         ScriptHandler handler = new ScriptHandler();
         String script = handler.genereateScript(currentSelectedModuleGui);
         if (script == null) {
