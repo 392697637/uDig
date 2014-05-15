@@ -115,6 +115,12 @@ public class SettingsDialog {
 
                 return parentPanel;
             }
+            
+            @Override
+            protected void handleShellCloseEvent() {
+                cancelPressed = true;
+                super.handleShellCloseEvent();
+            }
 
             @Override
             protected void buttonPressed( int buttonId ) {
@@ -127,6 +133,7 @@ public class SettingsDialog {
                 super.buttonPressed(buttonId);
             }
         };
+
         dialog.setBlockOnOpen(true);
         dialog.open();
     }
